@@ -7,7 +7,7 @@ hourCount = dict()
 
 for line in sys.stdin:
     hour, count = line.split(",")
-    hour = hour.strip()
+    hour = int(hour.strip())
     count = count.strip()
 
     try:
@@ -18,6 +18,7 @@ for line in sys.stdin:
     if hour not in hourCount.keys():
         hourCount[hour] = 0
     hourCount[hour]+= count
+    
 
-for hour, count in hourCount.items():
-    print("{}\t{}".format(hour, count))
+for hour in sorted(hourCount.keys()):
+	print("{}\t{}".format(hour, hourCount[hour]))
