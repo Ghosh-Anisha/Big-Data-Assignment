@@ -5,7 +5,7 @@ from datetime import *
 
 def checkattr(ob):
 	attr_count=0
-	if "lane blocked" in ob["Description"] or "shoulder blocked" in ob["Description"] or "overturned vehicle" in ob["Description"]:
+	if "lane blocked" in ob["Description"].lower() or "shoulder blocked" in ob["Description"].lower() or "overturned vehicle" in ob["Description"].lower():
 		attr_count = attr_count + 1
 	if ob['Severity'] >= 2:
 		attr_count = attr_count + 1
