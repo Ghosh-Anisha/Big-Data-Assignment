@@ -16,7 +16,6 @@ for line in sys.stdin:
         continue
 
     if state not in state_city.keys():
-        c
         state_city[state].append((city,0)) 
     state_city[state] += count
     
