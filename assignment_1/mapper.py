@@ -5,7 +5,8 @@ from datetime import *
 
 def checkattr(ob):
 	attr_count=0
-	if "lane blocked" in ob["Description"].lower() or "shoulder blocked" in ob["Description"].lower() or "overturned vehicle" in ob["Description"].lower():
+	ob_d= ob["Description"].lower()
+	if "lane blocked" in ob_d or "shoulder blocked" in ob_d or "overturned vehicle" in ob_d:
 		attr_count = attr_count + 1
 	if ob['Severity'] >= 2:
 		attr_count = attr_count + 1
@@ -15,7 +16,6 @@ def checkattr(ob):
 		attr_count = attr_count + 1
 	if ob['Precipitation(in)'] >=0.2:
 		attr_count = attr_count + 1
-	#if ob['Weather_Condition'] in ["Heavy Snow", "Thunderstorm", "Heavy Rain", "Heavy Rain Showers", "Blowing Dust"]:
 	if  "Heavy Snow" == ob['Weather_Condition'] or  "Thunderstorm" == ob['Weather_Condition'] or "Heavy Rain" == ob['Weather_Condition'] or "Heavy Rain Showers" == ob['Weather_Condition'] or "Blowing Dust" == ob['Weather_Condition']:
 		attr_count = attr_count + 1
 	if attr_count==6:
