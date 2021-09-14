@@ -1,24 +1,32 @@
 #!/usr/bin/python3
-import sys
-
 #!/usr/bin/env python
 import sys
-state_city=dict()
+state_city=list()
+cityCount= dict()
 
 for line in sys.stdin:
     obj, count = line.split(",")
-    city=obj["state"]
-    state=obj["city"]
-
+    state=obj["state"]
+    city=obj["city"]
+    
     try:
         count = int(count)
     except ValueError:
         continue
-
-    if state not in state_city.keys():
-        state_city[state].append((city,0)) 
-    state_city[state] += count
+	
+    if city not in cityCount.keys():
+        cityCount[city] = 0
+    cityCount[city]+= count
     
-
-for city in sorted(state_city.keys()):
-	print("{}\t{}".format(city, state_city[city]))
+    if city not in state_city:
+    	state_city.append((state,city))
+	
+for (state, city) in (state_city).sort():
+	acc=0
+	print(state)
+	for city1 in sorted(cityCount.keys()):
+		if (city1 == city):
+			print("{}\t{}".format(city1,cityCount[city]))
+		acc+=cityCount[city]
+	print(state, acc)
+	
