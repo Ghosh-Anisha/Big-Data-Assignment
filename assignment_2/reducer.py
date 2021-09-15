@@ -1,13 +1,13 @@
-#!/usr/bin/python3
 #!/usr/bin/env python
+
 import sys
 state_city=list()
 cityCount= dict()
 
 for line in sys.stdin:
-    obj, count = line.split(",")
-    state=obj["state"]
-    city=obj["city"]
+    state, city, count = line.split(",")
+    # state=obj["state"]
+    # city=obj["city"]
     
     try:
         count = int(count)
@@ -21,7 +21,7 @@ for line in sys.stdin:
     if city not in state_city:
     	state_city.append((state,city))
 	
-for (state, city) in (state_city).sort():
+for (state, city) in state_city:
 	acc=0
 	print(state)
 	for city1 in sorted(cityCount.keys()):
