@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import sys
 import json
 import requests
@@ -18,14 +18,16 @@ def euclidean_distance(obj):
 for line in sys.stdin: 
     ob=json.loads(line.strip())
 
-
     url = 'http://20.185.44.219:5000/'
-    myobj =  {'latitude':float(ob["Start_Lat"]), 'longitude': float(ob["Start_Lng"]) }
 
-    x = requests.post(url, data = myobj)
+    myobj =  {"latitude": ob["Start_Lat"], "longitude": ob["Start_Lng"] }
+
+    x = requests.post(url, json = myobj)
+    data=x.json()
+
     if euclidean_distance(ob):
-        print(x,",",euclidean_distance(ob))
+      print(data,",",euclidean_distance(ob))
     else:
-        pass
+      pass
 	
 
