@@ -2,49 +2,37 @@
 
 import sys
 state_city=set()
-cityCount= dict()
+citycount= 0
 prevstate=None
+prevcity=None
 statecount=0
 
-def printcity():
-    for city in cityCount.keys():
-        print(city,cityCount[city])
 
 for line in sys.stdin:
-    state, city, count = line.split(",").strip()
+    state, city, count = line.split(",")
+    state=state.strip()
+    city=city.strip()
+    count=count.strip()
 
     try:
         count = int(count)
     except ValueError:
         continue
 
-	
-    if(prevstate==None):
-        if city not in cityCount.keys():
-            cityCount[city] = 0
-        cityCount[city]+=count
+    if(prevstate != state):
+      if(prevstate != None):
+        print(prevstate,statecount)
+        statecount=0
+      print(state)
+      prevstate=state
+    if(prevstate==state):
+        if(prevcity != city):
+            if(prevcity != None):
+                print(prevcity,citycount)
+                citycount=0
+            prevcity=city     
+        citycount+=count
         statecount+=count
-        prevstate=state
-        continue
-    elif(prevstate != state):
-      print(prevstate)
-      printcity()
-      print(prevstate,statecount)
-      statecount=0
-      cityCount.clear()
-
-    if city not in cityCount.keys():
-        cityCount[city] = 0
-    cityCount[city]+=count
-    statecount+=count
-    
-    prevstate=state
-
-print(prevstate)
-printcity()
 print(prevstate,statecount)
-statecount=0
-
-
 
 
