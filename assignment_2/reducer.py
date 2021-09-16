@@ -13,6 +13,7 @@ for line in sys.stdin:
     state, city, count = line.split(",")
     state=state.strip()
     city=city.strip()
+    city=city[:-1]
     count=count.strip()
 
     try:
