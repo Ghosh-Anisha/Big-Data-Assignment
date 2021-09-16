@@ -24,6 +24,7 @@ for line in sys.stdin:
     if(prevstate != state):
       if(prevstate != None):
         print(prevcity,citycount)
+        citycount=0
         print(prevstate,statecount)
         flag=1
         statecount=0

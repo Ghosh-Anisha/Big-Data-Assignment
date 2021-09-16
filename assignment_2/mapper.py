@@ -13,7 +13,6 @@ def euclidean_distance(obj):
   
     x1=float(ob["Start_Lat"])
     x2=float(ob["Start_Lng"])
-    nan=float('Nan')
     if (math.isnan(x1)  or math.isnan(x2)):
       return 0
     d=((x1-lat)**2+(x2-long)**2)**0.5
