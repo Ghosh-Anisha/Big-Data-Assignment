@@ -1,13 +1,11 @@
-#!/usr/bin/env python
+#! /usr/bin/env python3
 
 import sys
-state_city=set()
 citycount= 0
 prevstate=None
 prevcity=None
 statecount=0
 flag=0
-
 
 for line in sys.stdin:
     state, city, count = line.split(",")
@@ -24,8 +22,8 @@ for line in sys.stdin:
     if(prevstate != state):
       if(prevstate != None):
         print(prevcity,citycount)
-        citycount=0
         print(prevstate,statecount)
+        citycount=0
         flag=1
         statecount=0
       print(state)
@@ -41,5 +39,4 @@ for line in sys.stdin:
         statecount+=count
 print(prevcity,citycount)
 print(prevstate,statecount)
-
 
