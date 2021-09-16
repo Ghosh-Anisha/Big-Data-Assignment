@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
 import sys
+state_city=set()
 citycount= 0
 prevstate=None
 prevcity=None
 statecount=0
+flag=0
 
 
 for line in sys.stdin:
     state, city, count = line.split(",")
     state=state.strip()
     city=city.strip()
-    city=city[:-1]
     count=count.strip()
 
     try:
@@ -21,19 +22,22 @@ for line in sys.stdin:
 
     if(prevstate != state):
       if(prevstate != None):
+        print(prevcity,citycount)
         print(prevstate,statecount)
+        flag=1
         statecount=0
       print(state)
       prevstate=state
     if(prevstate==state):
         if(prevcity != city):
-            #print(prevcity,city)
-            if(prevcity != None):
+            if(prevcity != None and flag!=1):
                 print(prevcity,citycount)
                 citycount=0
-            prevcity=city     
+            prevcity=city
+            flag=0     
         citycount+=count
         statecount+=count
+print(prevcity,citycount)
 print(prevstate,statecount)
 
 
