@@ -2,6 +2,7 @@
 
 import sys
 import json
+import math
 import requests
 
 lat= float(sys.argv[1].strip())
@@ -9,8 +10,12 @@ long= float(sys.argv[2].strip())
 D= float(sys.argv[3].strip())
 
 def euclidean_distance(obj):
+  
     x1=float(ob["Start_Lat"])
     x2=float(ob["Start_Lng"])
+    nan=float('Nan')
+    if (math.isnan(x1)  or math.isnan(x2)):
+      return 0
     d=((x1-lat)**2+(x2-long)**2)**0.5
     if(d<=D):
         return 1
@@ -26,8 +31,8 @@ for line in sys.stdin:
 
       x = requests.post(url, json = myobj)
       data=x.json()
-      
-      print(data['state'],",",data['city'],",",euclidean_distance(ob))
+      city=data['city']+'$'
+      print(data['state'],",",city,",",euclidean_distance(ob))
 
     else:
       pass
