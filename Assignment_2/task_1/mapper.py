@@ -1,6 +1,7 @@
 #!/usr/bin/python3
+import sys
 
-with open('dataset-sample.txt') as f:
+with open('dataset_1percent.txt') as f:
     lines = f.readlines()
 	
 for line in lines:
