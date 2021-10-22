@@ -5,11 +5,12 @@ source_list=[]
 one=1
 
 f=open('v.txt','w')
+#f=open(sys.argv[1],'a')
 prevsource=None
 for line in sys.stdin:
     source, dest = line.split(",")
     source = source.strip()
-    dest = dest.strip()
+    dest = int(dest.strip())
     
     if source==prevsource or prevsource==None:
         source_list.append(dest)
