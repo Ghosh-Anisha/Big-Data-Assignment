@@ -1,24 +1,27 @@
-#!/usr/bin/python3
+#! /usr/bin/python3
 #!/usr/bin/env python
-import sys
 
-page_rank=0
-prevdest=None
+import sys
+source_list=[]
+one=1
+
+f=open(sys.argv[1],'a')
 prevsource=None
 for line in sys.stdin:
-    dest, source,contribution = line.split(",")
-    source = int(source.strip())
+    source, dest = line.split(",")
+    source = source.strip()
     dest = dest.strip()
-    contribution=int(contribution.strip())
     
-    if dest==prevdest or prevdest==None:
-        page_rank+=contribution
+    if source==prevsource or prevsource==None:
+        source_list.append(dest)
     else:
-        rank=0.15+0.85*page_rank
-        print(prevsource,",", rank)
-        page_rank=contribution
-    prevdest=dest
+        print(prevsource,"\t", source_list)
+        f.write(""+ prevsource + ", 1\n")
+        source_list.clear()
+        source_list.append(dest)
     prevsource=source
 
-rank=0.15+0.85*page_rank
-print(prevsource,",", rank)
+print(prevsource,"\t",source_list)
+f.write(prevsource + ", 1\n")
+f.close()
+
